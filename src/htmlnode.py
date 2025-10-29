@@ -6,13 +6,13 @@ class HTMLNode:
     def __init__(
         self,
         tag: Optional[str] = None,
-        value: Optional[str] = None,
         children: Optional[List[HTMLNode]] = None,
+        value: Optional[str] = None,
         props: Optional[Dict[str, str]] = None,
     ) -> None:
         self.tag = tag
-        self.value = value
         self.children = children
+        self.value = value
         self.props = props
 
     def to_html(self) -> None:

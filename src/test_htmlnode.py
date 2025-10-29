@@ -18,7 +18,7 @@ class TestHTMLNode(unittest.TestCase):
         children = "html_children"
         props = {"prop1": "prop1_value", "prop2": "prop2_value"}
 
-        node = HTMLNode(tag, value, children, props)
+        node = HTMLNode(tag, children, value, props)
         test_text_string = (
             f"HTMLNode({tag}, {value}, {children}, {node.props_to_html()})"
         )
