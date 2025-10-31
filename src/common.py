@@ -28,17 +28,25 @@ def split_nodes_delimiter(
     for node in old_nodes:
         buffer = ""
         in_delimited_text = False
-        for char in node.text:
-            if char == delimiter:
-                type = text_type if in_delimited_text else TextType.TEXT
-                return_nodes.append(TextNode(buffer, type))
-                buffer = ""
+        i = 0
+        while i < len(node.text):
+            if (
+                i <= len(node.text) - len(delimiter)
+                and node.text[i : i + len(delimiter)] == delimiter
+            ):
+                if buffer:
+                    node_type = text_type if in_delimited_text else TextType.TEXT
+                    return_nodes.append(TextNode(buffer, node_type))
+                    buffer = ""
+
                 in_delimited_text = not in_delimited_text
-                continue
+                i += len(delimiter)
+            else:
+                buffer += node.text[i]
+                i += 1
 
-            buffer += char
-
-        type = text_type if in_delimited_text else TextType.TEXT
-        return_nodes.append(TextNode(buffer, type))
+        if buffer:
+            node_type = text_type if in_delimited_text else TextType.TEXT
+            return_nodes.append(TextNode(buffer, node_type))
 
     return return_nodes

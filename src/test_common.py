@@ -57,9 +57,9 @@ class TestSplitNodes(unittest.TestCase):
         self.assertEqual(new_nodes, should_equal)
 
     def test_bold_block(self):
-        node = TextNode("This is text with a *bold block* word", TextType.TEXT)
-        node2 = TextNode("This is another *bold* text block", TextType.TEXT)
-        new_nodes = common.split_nodes_delimiter([node, node2], "*", TextType.BOLD)
+        node = TextNode("This is text with a **bold block** word", TextType.TEXT)
+        node2 = TextNode("This is another **bold** text block", TextType.TEXT)
+        new_nodes = common.split_nodes_delimiter([node, node2], "**", TextType.BOLD)
         should_equal = [
             TextNode("This is text with a ", TextType.TEXT),
             TextNode("bold block", TextType.BOLD),
