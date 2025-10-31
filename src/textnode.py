@@ -1,9 +1,9 @@
 from __future__ import annotations
-from enum import Enum, auto
+from enum import Enum
 
 
 class TextType(Enum):
-    PLAIN = "plain"
+    TEXT = "text"
     BOLD = "bold"
     ITALIC = "italic"
     CODE = "code"
