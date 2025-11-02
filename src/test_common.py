@@ -69,3 +69,17 @@ class TestSplitNodes(unittest.TestCase):
             TextNode(" text block", TextType.TEXT),
         ]
         self.assertEqual(new_nodes, should_equal)
+
+
+class TestExtractImagesLinks(unittest.TestCase):
+    def test_extract_markdown_images(self):
+        matches = common.extract_markdown_images(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)"
+        )
+        self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png")], matches)
+
+    def test_extract_markdown_link(self):
+        matches = common.extract_markdown_links(
+            "This is text with a [link to homework](https://pornhub.com)"
+        )
+        self.assertListEqual([("link to homework", "https://pornhub.com")], matches)
